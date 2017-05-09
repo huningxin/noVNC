@@ -260,10 +260,14 @@ var Display;
                     if (canvas.width !== width) {
                         canvas.width = width;
                         canvas.style.width = width + 'px';
+                        $D('noVNC_splash').width = width;
+                        $D('noVNC_splash').style.width = width + 'px';
                     }
                     if (canvas.height !== height) {
                         canvas.height = height;
                         canvas.style.height = height + 'px';
+                        $D('noVNC_splash').height = height;
+                        $D('noVNC_splash').style.height = height + 'px';
                     }
 
                     if (saveImg) {

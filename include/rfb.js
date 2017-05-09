@@ -432,6 +432,8 @@ var RFB;
         _updateState: function (state, statusMsg) {
             var oldstate = this._rfb_state;
 
+            Util.Debug("_updateState '" + state);
+
             if (state === oldstate) {
                 // Already here, ignore
                 Util.Debug("Already in state '" + state + "', ignoring");
@@ -483,6 +485,21 @@ var RFB;
                     this._init_vars();
                     this._connect();
                     // WebSocket.onopen transitions to 'ProtocolVersion'
+                    function showSplash() {
+                        var splash = $D('noVNC_splash');
+                        var opacity = 1.0;
+                        splash.style.opacity = opacity;
+                        var interval = setInterval(function() {
+                            if (opacity > 0) {
+                                opacity -= 0.1;
+                                splash.style.opacity = opacity;
+                            } else {
+                                clearInterval(interval);
+                            }
+                        }, 100);
+                    }
+
+                    showSplash();
                     break;
 
                 case 'disconnect':
